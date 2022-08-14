@@ -1,0 +1,16 @@
+# Ignore all
+**
+
+# Exclude
+!core
+!email_generator
+!manage.py
+!requirements.txt
+!Makefile
+
+
+
+
+
+
+
