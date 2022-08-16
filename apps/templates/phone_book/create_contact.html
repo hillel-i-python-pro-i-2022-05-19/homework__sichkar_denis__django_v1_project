@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+{% block title %}Contacts{% endblock %}
+{% block body %}
+    <div class="get-started__header">
+        <h1 class="get-started__title"> Creat contact</h1>
+    </div>
+    <form method="POST" class="get-started__form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="get-started__btn btn-contact-create">Create</button>
+    </form>
+{% endblock %}

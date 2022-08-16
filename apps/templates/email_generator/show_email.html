@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% block title %}Email generator{% endblock %}
+{% block body %}
+    <div class="get-started__header">
+        <h1 class="get-started__title"> New emails: {{ email_length }} </h1>
+    </div>
+    <ul class="get-started__list">
+        {% for user in new_users %}
+            <li class="get-started__item">
+                {{ user }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

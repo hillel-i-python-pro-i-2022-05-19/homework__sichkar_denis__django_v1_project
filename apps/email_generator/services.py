@@ -1,7 +1,7 @@
 import collections
 from typing import Iterator
 
-from email_generator.utils import generator_name, generator_email
+from apps.email_generator.utils import generator_name, generator_email
 
 User = collections.namedtuple('User', ['name', 'email'])
 
