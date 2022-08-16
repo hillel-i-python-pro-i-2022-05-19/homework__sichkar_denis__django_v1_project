@@ -2,11 +2,20 @@
 **
 
 # Exclude
-!core
-!email_generator
-!manage.py
 !requirements.txt
+!core
+!apps
+!manage.py
+!docker/app
 !Makefile
+
+
+
+
+
+
+
+
 
 
 

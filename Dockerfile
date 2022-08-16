@@ -1,5 +1,5 @@
 FROM python:3.10
-ENV PYTHONDONTWRITEBYTECODE=1
+
 ENV PYTHONUNBUFFERED=1
 
 ARG WORKDIR=/wd
@@ -18,12 +18,21 @@ COPY requirements.txt requirements.txt
 RUN pip install --upgrade pip && \
     pip install --requirement requirements.txt
 
-COPY --chown=${USER} ./Makefile Makefile
+
+COPY --chmod=755 ./docker/app/entrypoint.sh /entrypoint.sh
+COPY --chmod=755 ./docker/app/start.sh /start.sh
+
+
+COPY ./Makefile Makefile
 
 COPY ./manage.py manage.py
-COPY ./core core
-COPY ./email_generator email_generator
+COPY ./core ./core/
+COPY ./apps ./apps/
 
 
 USER ${USER}
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+VOLUME ${WORKDIR}/db
 EXPOSE 8000
