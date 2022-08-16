@@ -1,30 +1,73 @@
-# Project on a Django 
 
-___
 
-## Docker
+# Django application
 
-### Run
+---
 
-To run the app in docker use:
+## 🏠 Homework
+
+Homework related actions.
+
+### ▶️ Run
+
+Make all actions needed for run homework from zero.
+
+```shell
+make d-homework-i-run
+```
+#### After, go to [http://localhost:8000](http://localhost:8000)
+
+### 🚮 Purge
+
+Make all actions needed for run homework from zero.
+
+```shell
+make d-homework-i-purge
+```
+
+---
+
+## 🏗️ Preparation
+
+Make some initialization steps. For example, copy configs.
+
+```shell
+make init-configs-i-dev
+```
+
+---
+
+## 🐳 Docker
+
+Use services in dockers.
+
+### ▶️ Run
+
+Just run
 
 ```shell
 make d-run
 ```
 
-#### After, go to [http://localhost:8000](http://localhost:8000)
+### ⏯️ Run extended
 
-### Stop
+Shutdown previous, run in detached mode, follow logs
 
-To stop app in docker use:
+```shell
+make d-run-i-extended
+```
+
+### ⏹️Stop
+
+Stop services
 
 ```shell
 make d-stop
 ```
 
-### Clean
+### 🚮 Purge
 
-To clean up an app in docker use:
+Purge all data related with services
 
 ```shell
 make d-purge
