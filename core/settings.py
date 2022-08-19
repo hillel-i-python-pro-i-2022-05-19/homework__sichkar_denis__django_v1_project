@@ -30,13 +30,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = [
+    'phonenumber_field',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'phonenumber_field',
 ]
 LOCAL_APPS = [
     'apps.base',
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR.joinpath('db','db.sqlite3')),
+        'NAME': str(BASE_DIR.joinpath('db', 'db.sqlite3')),
     }
 }
 

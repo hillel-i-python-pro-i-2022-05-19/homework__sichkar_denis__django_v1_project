@@ -32,6 +32,7 @@ COPY ./apps ./apps/
 
 USER ${USER}
 
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 VOLUME ${WORKDIR}/db

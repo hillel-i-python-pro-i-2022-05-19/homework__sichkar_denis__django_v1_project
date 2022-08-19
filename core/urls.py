@@ -18,8 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),
+    path('admin/', admin.site.urls),
     path('email-generator/', include('apps.email_generator.urls')),
     path('contacts/', include('apps.phone_book.urls')),
-    path('admin/', admin.site.urls),
     path('', include("apps.base.urls")),
 ]
