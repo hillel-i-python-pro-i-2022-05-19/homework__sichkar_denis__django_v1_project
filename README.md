@@ -16,6 +16,13 @@ Make all actions needed for run homework from zero.
 make d-homework-i-run
 ```
 #### After, go to [http://localhost:8000](http://localhost:8000)
+### 🛠 Create data
+
+Generate random data (5 pins).
+
+```shell
+make create-data
+```
 
 ### 🚮 Purge
 
