@@ -4,10 +4,6 @@ d-homework-i-run:
 	@make init-configs-i-dev && \
 	make d-run
 
-.PHONY: create-data
-# Shortcut
-create-data:
-	@python manage.py createdata
 
 .PHONY: d-homework-i-purge
 # Make all actions needed for purge homework related data.
@@ -19,6 +15,7 @@ d-homework-i-purge:
 # Just run
 d-run:
 	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose up --build
+
 
 .PHONY: d-run-i-extended
 # Shutdown previous, run in detached mode, follow logs
@@ -50,6 +47,7 @@ d-purge:
 migrate:
 	@python manage.py migrate
 
+
 .PHONY: migrations
 # Shortcut
 migrations:
@@ -61,7 +59,13 @@ migrations:
 init-configs-i-dev:
 	@cp docker-compose.override.dev.yml docker-compose.override.yml
 
+
 .PHONY: init-dev-i-create-superuser
 init-dev-i-create-superuser:
 	@DJANGO_SUPERUSER_PASSWORD=admin123 python manage.py createsuperuser --user admin --email admin@gmail.com --no-input
 
+
+.PHONY: create-data
+# Shortcut
+create-data:
+	@python manage.py createdata
