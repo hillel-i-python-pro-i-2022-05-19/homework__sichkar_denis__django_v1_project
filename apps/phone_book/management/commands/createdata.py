@@ -9,17 +9,17 @@ from apps.phone_book.models import PhoneBook, Tag, ContactDetails
 class Command(BaseCommand):
     help = "Command information"
 
-    def generate_random_numbers(self):
+    def generate_random_numbers(self) -> int:
         return random.randint(10000000, 99999999)
 
-    def generate_url_profile_linkedin(self):
+    def generate_url_profile_linkedin(self) -> str:
         fake = Faker()
         self.first_name = fake.first_name()
         last_name = fake.last_name().lower()
         random_numbers = self.generate_random_numbers()
         return f"https://www.linkedin.com/in/{self.first_name.lower()}-{last_name}-{random_numbers}a1/"
 
-    def generate_phone_number(self):
+    def generate_phone_number(self) -> str:
         random_numbers = self.generate_random_numbers()
         return f'+121{random_numbers}'
 
