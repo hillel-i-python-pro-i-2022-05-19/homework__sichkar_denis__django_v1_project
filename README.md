@@ -13,6 +13,7 @@ Make all actions needed for run homework from zero.
 ```shell
 make d-homework-i-run
 ```
+
 #### After, go to [http://localhost:8000](http://localhost:8000)
 
 ### 🚮 Purge
