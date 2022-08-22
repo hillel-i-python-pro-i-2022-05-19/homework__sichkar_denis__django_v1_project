@@ -4,6 +4,11 @@ d-homework-i-run:
 	@make init-configs-i-dev && \
 	make d-run
 
+.PHONY: create-data
+# Shortcut
+create-data:
+	@python manage.py createdata
+
 .PHONY: d-homework-i-purge
 # Make all actions needed for purge homework related data.
 d-homework-i-purge:
@@ -59,3 +64,4 @@ init-configs-i-dev:
 .PHONY: init-dev-i-create-superuser
 init-dev-i-create-superuser:
 	@DJANGO_SUPERUSER_PASSWORD=admin123 python manage.py createsuperuser --user admin --email admin@gmail.com --no-input
+
