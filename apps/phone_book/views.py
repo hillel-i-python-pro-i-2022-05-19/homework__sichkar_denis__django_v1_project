@@ -7,8 +7,9 @@ from apps.phone_book.models import PhoneBook
 
 
 def show_contacts(request: HttpRequest) -> HttpResponse:
-    phone_book = PhoneBook.objects.all()
-    return render(request, 'phone_book/show_contacts.html', {"phone_book": phone_book, })
+    phone_book = PhoneBook.objects.all().order_by('-id')
+    return render(request, 'phone_book/show_contacts.html',
+                  {"phone_book": phone_book})
 
 
 def create_contact(request: HttpRequest) -> HttpResponse:

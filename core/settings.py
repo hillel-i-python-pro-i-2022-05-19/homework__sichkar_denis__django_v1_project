@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+# import django
+# django.setup()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 APPS_DIR = BASE_DIR.joinpath('apps')
@@ -30,7 +33,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = [
-    'phonenumber_field',
     'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,8 +46,11 @@ LOCAL_APPS = [
     'apps.email_generator',
     'apps.phone_book',
 ]
+THIRD_PARTY_APPS = [
+    'phonenumber_field',
+]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
