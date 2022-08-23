@@ -41,7 +41,7 @@ class PhoneBook(models.Model):
         help_text='This is the birthday of the contact',
         null=True,
         blank=True,
-        max_length=150
+        max_length=150,
     )
 
     phone_number = PhoneNumberField(
@@ -55,8 +55,8 @@ class PhoneBook(models.Model):
     url_profile_linkedin = models.URLField(
         "LinkedIn Url profile",
         help_text='Link to LinkedIn Profile',
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
         validators=[RequireLinkToLinkedinProfile()],
     )
     nick_linkedin = models.CharField(

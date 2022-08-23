@@ -1,1 +1,1 @@
-from .email_generator import email_generator
+from .email_generator import EmailGeneratorView

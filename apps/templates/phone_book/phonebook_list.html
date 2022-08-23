@@ -7,7 +7,7 @@
             creation</a>
     </div>
     <ol class="get-started__list list-get-started--border">
-        {% for phone in phone_book %}
+        {% for phone in object_list %}
             <li class="get-started__item ">
                 <span>{{ phone.contact_name }}{{ phone.phone_number }}</span>
                 <div class="get-started__buttons">
