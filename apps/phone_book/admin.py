@@ -1,16 +1,17 @@
 from django.contrib import admin
 
-from .models import PhoneBook, Tag, ContactDetails
+from .models import Contact, Tag, ContactDetail, ContactTypeChoice
 
 
-class ContactDetailsInlineAdmin(admin.TabularInline):
-    model = ContactDetails
+class ContactDetailInlineAdmin(admin.TabularInline):
+    model = ContactDetail
+    max_num = len(ContactTypeChoice)
 
 
-@admin.register(PhoneBook)
+@admin.register(Contact)
 class PhoneBookAdmin(admin.ModelAdmin):
     inlines = [
-        ContactDetailsInlineAdmin
+        ContactDetailInlineAdmin
     ]
 
 
@@ -19,6 +20,6 @@ class TagAdmin(admin.ModelAdmin):
     ...
 
 
-@admin.register(ContactDetails)
-class ContactDetailsAdmin(admin.ModelAdmin):
+@admin.register(ContactDetail)
+class ContactDetailAdmin(admin.ModelAdmin):
     ...

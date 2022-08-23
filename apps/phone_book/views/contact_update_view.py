@@ -1,10 +1,10 @@
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
-from apps.phone_book.models import PhoneBook
+from apps.phone_book.models import Contact
 
 
 class ContactEditView(UpdateView):
-    model = PhoneBook
-    fields = ["contact_name", "phone_number", 'contact_birthday', "tags"]
+    model = Contact
+    fields = ["contact_name", 'contact_birthday', "tags"]
     success_url = reverse_lazy('contacts:show_contacts')

@@ -1,34 +1,24 @@
+import re
+
 from birthday import BirthdayField
-from django.core.exceptions import ValidationError
+from django import forms
 from django.db import models
-from django.utils.deconstruct import deconstructible
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Tag(models.Model):
-    name = models.CharField(
+    tag_name = models.CharField(
         'Name',
         help_text='Name of tag',
         max_length=200,
-        unique=True,
     )
 
     def __str__(self) -> str:
-        return f"{self.name}"
+        return f"{self.tag_name}"
 
     __repr__ = __str__
 
 
-@deconstructible
-class RequireLinkToLinkedinProfile:
-    def __call__(self, value):
-        if not value.startswith("https://www.linkedin.com/in/"):
-            raise ValidationError('The link must start with "https://www.linkedin.com/in/"')
-        elif len(value) < 29:
-            raise ValidationError('Enter full link')
-
-
-class PhoneBook(models.Model):
+class Contact(models.Model):
     contact_name = models.CharField(
         "Contact name",
         help_text='This is the name of the contact',
@@ -41,30 +31,7 @@ class PhoneBook(models.Model):
         help_text='This is the birthday of the contact',
         null=True,
         blank=True,
-        max_length=150,
-    )
-
-    phone_number = PhoneNumberField(
-        "Phone number",
-        help_text='This is a phone number',
-        null=False,
-        blank=False,
-        unique=True,
-
-    )
-    url_profile_linkedin = models.URLField(
-        "LinkedIn Url profile",
-        help_text='Link to LinkedIn Profile',
-        null=False,
-        blank=False,
-        validators=[RequireLinkToLinkedinProfile()],
-    )
-    nick_linkedin = models.CharField(
-        "linkedin Nick",
-        help_text='Automatically generated from LinkedIn Url profile',
-        null=True,
-        blank=True,
-        max_length=200,
+        max_length=150
     )
     tags = models.ManyToManyField(
         Tag,
@@ -74,40 +41,52 @@ class PhoneBook(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
-    def save(
-            self, force_insert=False, force_update=False, using=None, update_fields=None
-    ):
-        self.nick_linkedin = self.url_profile_linkedin.split("https://www.linkedin.com/in/")[1]
-        if self.nick_linkedin[-1:] == '/':
-            self.nick_linkedin = self.nick_linkedin[:-1]
-        super().save(force_insert, force_update)
-
     def __str__(self) -> str:
-        return f"{self.contact_name} - {self.phone_number}"
+        return f"{self.contact_name}"
 
     __repr__ = __str__
 
 
-class ContactDetails(models.Model):
-    id_phone_book = models.ForeignKey(
-        PhoneBook,
+class ContactTypeChoice(models.TextChoices):
+    PHONE = 'PHONE', 'Phones'
+    EMAIL = 'EMAIL', 'Email'
+    TELEGRAM = 'TELEGRAM', 'Telegram'
+    LINKEDIN = 'LINKEDIN', 'Linkedin'
+
+
+class ContactDetail(models.Model):
+    id_contact = models.ForeignKey(
+        Contact,
         verbose_name='Contact',
         on_delete=models.CASCADE,
         null=False,
         blank=False,
     )
-    contact_details_name = models.CharField(
+    contact_detail_type = models.CharField(
         'Contact details name',
-        help_text='Name of contact details',
+        help_text='Type of contact details',
         max_length=200,
+        choices=ContactTypeChoice.choices,
+        default=ContactTypeChoice.PHONE,
     )
-    contact_details = models.CharField(
+    contact_detail_value = models.CharField(
         "Contact details",
         help_text='This is the contact details',
         max_length=200
     )
 
+    def clean(self):
+        regex_to_types = {
+            "PHONE": r"^(?:0|\+?380)\s?(?:\d\s?){9}$",
+            "EMAIL": r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+',
+            "TELEGRAM": r".*\B@(?=\w{5,32}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*.*$",
+            "LINKEDIN": r"^https?://((www|\w\w)\.)?linkedin.com/((in/[^/]+/?)|(pub/[^/]+/((\w|\d)+/?){3}))$"
+        }
+        if not re.search(regex_to_types[self.contact_detail_type], self.contact_detail_value):
+            raise forms.ValidationError("Incorrect Value")
+        return self.contact_detail_value
+
     def __str__(self) -> str:
-        return f"{self.id_phone_book.contact_name}: {self.contact_details_name} - {self.contact_details}"
+        return f"{self.id_contact.contact_name}: {self.contact_detail_type} - {self.contact_detail_value}"
 
     __repr__ = __str__

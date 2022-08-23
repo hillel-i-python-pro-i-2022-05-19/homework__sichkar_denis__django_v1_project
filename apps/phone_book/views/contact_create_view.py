@@ -14,4 +14,4 @@ def create_contact(request: HttpRequest) -> HttpResponse:
             return redirect('contacts:show_contacts')
     else:
         form = ContactsForm()
-    return render(request, 'phone_book/phonebook_form.html', {"form": form})
+    return render(request, 'phone_book/contact_form.html', {"form": form})
