@@ -54,14 +54,14 @@ class ContactTypeChoice(models.TextChoices):
     LINKEDIN = 'LINKEDIN', 'Linkedin'
 
 
-class ContactDetail(models.Model):
-    id_contact = models.ForeignKey(
-        Contact,
-        verbose_name='Contact',
-        on_delete=models.CASCADE,
-        null=False,
-        blank=False,
-    )
+class ContactDetail(Contact):
+    # id_contact = models.ForeignKey(
+    #     Contact,
+    #     verbose_name='Contact',
+    #     on_delete=models.CASCADE,
+    #     null=False,
+    #     blank=False,
+    # )
     contact_detail_type = models.CharField(
         'Contact details name',
         help_text='Type of contact details',
