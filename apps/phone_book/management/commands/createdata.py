@@ -46,7 +46,7 @@ class Command(BaseCommand):
                 contact_name=contact_name,
                 contact_birthday=contact_birthday,
             )
-            for value in ContactTypeChoice.choices[:4]:
+            for value in ContactTypeChoice.choices[:random.randint(0, 4)]:
                 contact_detail_type = 'PHONE'
                 contact_detail_value = ''
                 if 'PHONE' in value:
