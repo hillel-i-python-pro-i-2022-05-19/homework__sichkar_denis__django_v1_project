@@ -3,11 +3,11 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 
 from apps.phone_book.forms import ContactsForm
-from apps.phone_book.models import PhoneBook
+from apps.phone_book.models import Contact
 
 
 def show_contacts(request: HttpRequest) -> HttpResponse:
-    phone_book = PhoneBook.objects.all().order_by('-id')
+    phone_book = Contact.objects.all().order_by('-id')
     return render(request, 'phone_book/show_contacts.html',
                   {"phone_book": phone_book})
 
@@ -25,7 +25,7 @@ def create_contact(request: HttpRequest) -> HttpResponse:
 
 
 def edit_contact(request: HttpRequest, pk) -> HttpResponse:
-    phone_book = get_object_or_404(PhoneBook, pk=pk)
+    phone_book = get_object_or_404(Contact, pk=pk)
     if request.POST:
         form = ContactsForm(request.POST, instance=phone_book)
         if form.is_valid():
@@ -38,7 +38,7 @@ def edit_contact(request: HttpRequest, pk) -> HttpResponse:
 
 
 def delete_contact(request: HttpRequest, pk) -> HttpResponse:
-    total_deleted, _ = PhoneBook.objects.filter(pk=pk).delete()
+    total_deleted, _ = Contact.objects.filter(pk=pk).delete()
     if total_deleted:
         messages.info(request, "Contact deleted")
     else:

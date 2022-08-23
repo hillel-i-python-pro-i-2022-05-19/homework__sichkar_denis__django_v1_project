@@ -5,3 +5,4 @@ django-phonenumber-field==6.3.0
 django-grappelli==3.0.3
 django-birthday==0.1.4
 django-picklefield==3.1
+nickname_generator==1.0.1
