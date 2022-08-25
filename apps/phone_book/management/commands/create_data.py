@@ -1,6 +1,6 @@
 import random
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 from faker import Faker
 from nickname_generator import generate
 
@@ -8,8 +8,11 @@ from apps.phone_book.models import Contact, Tag, ContactDetail, ContactTypeChoic
 
 
 class Command(BaseCommand):
-    help = "Command information"
+    help = "Creat contacts"
     fake = Faker()
+
+    def add_arguments(self, parser: CommandParser):
+        parser.add_argument('amount', type=int, )
 
     def generator_random_numbers(self) -> int:
         return random.randint(100000000, 999999999)
@@ -34,8 +37,10 @@ class Command(BaseCommand):
         random_numbers = self.generator_random_numbers()
         return f'+380{random_numbers}'
 
-    def handle(self, *args, **kwargs):
-        for _ in range(5):
+    def handle(self, *args, **options):
+        amount_of_contact = options['amount']
+        print(amount_of_contact)
+        for _ in range(amount_of_contact):
             contact_birthday = self.fake.date_of_birth(minimum_age=18, maximum_age=99)
             phone_number = self.generate_phone_number()
             contact_name = self.generator_name()
@@ -66,7 +71,7 @@ class Command(BaseCommand):
                     contact_detail_value=contact_detail_value,
                 )
 
-        for _ in range(5):
+        for _ in range(amount_of_contact):
             word = self.fake.word()
             Tag.objects.create(
                 tag_name=word

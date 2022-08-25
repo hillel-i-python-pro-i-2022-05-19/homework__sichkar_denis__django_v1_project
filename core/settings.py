@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+import environ
+
 # import django
 # django.setup()
 
@@ -19,16 +21,20 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 APPS_DIR = BASE_DIR.joinpath('apps')
 
+env = environ.Env()
+env.read_env(BASE_DIR.joinpath('.env'))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+SECRET_KEY = env.str('DJANGO__SECRET_KEY')
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)%+%ax#ibcx9d(_1f+wnnzy*a4@e*k4%6ng3pbn_2m=q^4p^0i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DJANGO__DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('DJANGO__ALLOWED_HOSTS', default=[])
 
 # Application definition
 
@@ -88,10 +94,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR.joinpath('db', 'db.sqlite3')),
-    }
+    "default": env.db_url_config(
+        env.str(
+            "DB_URL",
+            f'postgresql://{env("POSTGRES_USER")}:{env("POSTGRES_PASSWORD")}@'
+            f'{env("POSTGRES_HOST")}:{env("POSTGRES_PORT")}/{env("POSTGRES_DB")}',
+        )
+    ),
 }
 
 # Password validation
