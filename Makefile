@@ -14,15 +14,28 @@ d-homework-i-purge:
 .PHONY: d-run
 # Just run
 d-run:
-	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose up --build
+	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 \
+		COMPOSE_PROFILES=full_dev \
+		docker-compose up --build
+
+
+.PHONY: d-run-i-local-dev
+# Just run services for local-dev
+d-run-i-local-dev:
+	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 \
+		COMPOSE_PROFILES=local_dev \
+		docker-compose up --build postgres
 
 
 .PHONY: d-run-i-extended
 # Shutdown previous, run in detached mode, follow logs
 d-run-i-extended:
 	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose down --timeout 0 && \
-	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose up --build --detach && \
+	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 \
+		COMPOSE_PROFILES=full_dev \
+		docker-compose up --build --detach && \
 	make d-logs-follow
+
 
 .PHONY: d-stop
 # Stop services
@@ -58,6 +71,13 @@ migrations:
 # Make some initialization steps. For example, copy configs.
 init-configs-i-dev:
 	@cp docker-compose.override.dev.yml docker-compose.override.yml
+	@cp .env.example .env
+
+
+.PHONY: util-i-kill-by-port
+util-i-kill-by-port:
+	@sudo lsof -i:8000 -Fp | head -n 1 | sed 's/^p//' | xargs sudo kill
+
 
 
 .PHONY: init-dev-i-create-superuser
@@ -68,4 +88,4 @@ init-dev-i-create-superuser:
 .PHONY: create-data
 # Shortcut
 create-data:
-	@python manage.py createdata
+	@python manage.py create_data <amount>
