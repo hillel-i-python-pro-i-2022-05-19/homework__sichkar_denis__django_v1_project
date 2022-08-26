@@ -87,4 +87,4 @@ util-i-kill-by-port:
 .PHONY: create-data
 # Shortcut
 create-data:
-	@python manage.py create_data <amount>
+	@python manage.py create_data 10
