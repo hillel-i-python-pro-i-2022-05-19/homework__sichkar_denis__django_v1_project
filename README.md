@@ -71,3 +71,11 @@ Purge all data related with services
 ```shell
 make d-purge
 ```
+
+## 🛠 Creat date
+
+Just run
+
+```shell
+make create-data
+```
