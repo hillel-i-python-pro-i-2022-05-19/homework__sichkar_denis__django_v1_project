@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="Run Django" type="Python.DjangoServer" factoryName="Django server">
+    <configuration default="false" name="Unnamed" type="Python.DjangoServer" factoryName="Django server"
+                   nameIsGenerated="true">
         <module name="homework__taranov_davyd__django_v1_project "/>
         <option name="INTERPRETER_OPTIONS" value=""/>
         <option name="PARENT_ENVS" value="true"/>
@@ -17,21 +18,21 @@
             <option name="IS_ENABLED" value="false"/>
             <option name="IS_SUBST" value="false"/>
             <option name="IS_PATH_MACRO_SUPPORTED" value="false"/>
-      <option name="IS_IGNORE_MISSING_FILES" value="false" />
-      <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-      <ENTRIES>
-        <ENTRY IS_ENABLED="true" PARSER="runconfig" />
-      </ENTRIES>
-    </EXTENSION>
-    <option name="launchJavascriptDebuger" value="false" />
-    <option name="port" value="8002" />
-    <option name="host" value="" />
-    <option name="additionalOptions" value="" />
-    <option name="browserUrl" value="" />
-    <option name="runTestServer" value="false" />
-    <option name="runNoReload" value="false" />
-    <option name="useCustomRunCommand" value="false" />
-    <option name="customRunCommand" value="" />
-    <method v="2" />
-  </configuration>
+            <option name="IS_IGNORE_MISSING_FILES" value="false"/>
+            <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false"/>
+            <ENTRIES>
+                <ENTRY IS_ENABLED="true" PARSER="runconfig"/>
+            </ENTRIES>
+        </EXTENSION>
+        <option name="launchJavascriptDebuger" value="false"/>
+        <option name="port" value="8000"/>
+        <option name="host" value=""/>
+        <option name="additionalOptions" value=""/>
+        <option name="browserUrl" value="http://127.0.0.1:8000/"/>
+        <option name="runTestServer" value="false"/>
+        <option name="runNoReload" value="false"/>
+        <option name="useCustomRunCommand" value="false"/>
+        <option name="customRunCommand" value=""/>
+        <method v="2"/>
+    </configuration>
 </component>
