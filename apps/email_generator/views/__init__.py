@@ -1,1 +1,2 @@
-from .email_generator import email_generator
+# flake8: noqa401
+from .email_generator import EmailGeneratorView

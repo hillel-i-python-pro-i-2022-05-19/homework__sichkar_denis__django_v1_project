@@ -1,5 +1,3 @@
-
-
 # Django application
 
 ---
@@ -15,6 +13,7 @@ Make all actions needed for run homework from zero.
 ```shell
 make d-homework-i-run
 ```
+
 #### After, go to [http://localhost:8000](http://localhost:8000)
 
 ### 🚮 Purge
@@ -71,4 +70,12 @@ Purge all data related with services
 
 ```shell
 make d-purge
+```
+
+## 🛠 Creat date
+
+Just run
+
+```shell
+make create-data
 ```
