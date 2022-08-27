@@ -1,0 +1,12 @@
+output-format: pylint
+
+max-line-length: 120
+
+uses:
+    - django
+
+pylint:
+    run: false
+
+bandit:
+    run: true

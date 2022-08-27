@@ -9,50 +9,82 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Contact',
+            name="Contact",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('contact_name', models.CharField(help_text='This is the name of the contact', max_length=200,
-                                                  verbose_name='Contact name')),
-                ('contact_birthday_dayofyear_internal',
-                 models.PositiveSmallIntegerField(default=None, editable=False, null=True)),
-                ('contact_birthday',
-                 birthday.fields.BirthdayField(blank=True, help_text='This is the birthday of the contact',
-                                               max_length=150, null=True, verbose_name='Birthday')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('modified_at', models.DateTimeField(auto_now=True)),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "contact_name",
+                    models.CharField(
+                        help_text="This is the name of the contact", max_length=200, verbose_name="Contact name"
+                    ),
+                ),
+                (
+                    "contact_birthday_dayofyear_internal",
+                    models.PositiveSmallIntegerField(default=None, editable=False, null=True),
+                ),
+                (
+                    "contact_birthday",
+                    birthday.fields.BirthdayField(
+                        blank=True,
+                        help_text="This is the birthday of the contact",
+                        max_length=150,
+                        null=True,
+                        verbose_name="Birthday",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("modified_at", models.DateTimeField(auto_now=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tag_name', models.CharField(help_text='Name of tag', max_length=200, verbose_name='Name')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("tag_name", models.CharField(help_text="Name of tag", max_length=200, verbose_name="Name")),
             ],
         ),
         migrations.CreateModel(
-            name='ContactDetail',
+            name="ContactDetail",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('contact_detail_type', models.CharField(
-                    choices=[('PHONE', 'Phones'), ('EMAIL', 'Email'), ('TELEGRAM', 'Telegram'),
-                             ('LINKEDIN', 'Linkedin')], default='PHONE', help_text='Type of contact details',
-                    max_length=200, verbose_name='Contact details name')),
-                ('contact_detail_value', models.CharField(help_text='This is the contact details', max_length=200,
-                                                          verbose_name='Contact details')),
-                ('id_contact', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='phone_book.contact',
-                                                 verbose_name='Contact')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "contact_detail_type",
+                    models.CharField(
+                        choices=[
+                            ("PHONE", "Phones"),
+                            ("EMAIL", "Email"),
+                            ("TELEGRAM", "Telegram"),
+                            ("LINKEDIN", "Linkedin"),
+                        ],
+                        default="PHONE",
+                        help_text="Type of contact details",
+                        max_length=200,
+                        verbose_name="Contact details name",
+                    ),
+                ),
+                (
+                    "contact_detail_value",
+                    models.CharField(
+                        help_text="This is the contact details", max_length=200, verbose_name="Contact details"
+                    ),
+                ),
+                (
+                    "id_contact",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="phone_book.contact", verbose_name="Contact"
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='contact',
-            name='tags',
-            field=models.ManyToManyField(blank=True, related_name='Contact_related_many_to_many_items',
-                                         to='phone_book.tag'),
+            model_name="contact",
+            name="tags",
+            field=models.ManyToManyField(
+                blank=True, related_name="Contact_related_many_to_many_items", to="phone_book.tag"
+            ),
         ),
     ]

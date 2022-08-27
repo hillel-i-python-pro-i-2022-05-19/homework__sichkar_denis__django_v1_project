@@ -11,7 +11,7 @@ def create_contact(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             form.save()
             messages.info(request, "Contact created")
-            return redirect('contacts:show_contacts')
+            return redirect("contacts:show_contacts")
     else:
         form = ContactsForm()
-    return render(request, 'phone_book/contact_form.html', {"form": form})
+    return render(request, "phone_book/contact_form.html", {"form": form})

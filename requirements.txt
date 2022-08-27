@@ -25,3 +25,14 @@ nickname_generator==1.0.1
 
 # ...
 django-picklefield==3.1
+
+# [code_style]-[BEGIN]
+# Pre-commit hook.
+pre-commit==2.20.0
+# Upgrade syntax.
+pyupgrade==2.37.3
+# Formatter. Apply codestyle.
+black==22.6.0
+# Static analysis
+prospector[with_everything]==1.7.7
+# [code_style]-[END]

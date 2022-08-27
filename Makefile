@@ -84,6 +84,18 @@ util-i-kill-by-port:
 	@sudo lsof -i:8000 -Fp | head -n 1 | sed 's/^p//' | xargs sudo kill
 
 
+.PHONY: init-dev
+init-dev:
+	@pip install --upgrade pip && \
+	pip install --requirement requirements.txt && \
+	pre-commit install
+
+
+.PHONY: pre-commit-run-all
+pre-commit-run-all:
+	@pre-commit run --all-files
+
+
 .PHONY: create-data
 # Shortcut
 create-data:

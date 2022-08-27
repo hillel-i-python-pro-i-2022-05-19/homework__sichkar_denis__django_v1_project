@@ -6,7 +6,7 @@ from apps.email_generator.services import users_generator
 
 
 class EmailGeneratorView(TemplateView):
-    template_name = 'email_generator/show_email.html'
+    template_name = "email_generator/show_email.html"
     _DEFAULT_NUMBER_OF_EMAIL: ClassVar[int] = 100
 
     def get_context_data(self, **kwargs):
@@ -15,12 +15,13 @@ class EmailGeneratorView(TemplateView):
             email_length = data["email_length"]
         except KeyError:
             email_length = 100
-            data['email_length'] = email_length
+            data["email_length"] = email_length
         user_as_list = users_generator(email_length)
-        new_users = [f'''{user.name} {user.email}''' for user in user_as_list]
-        data['new_users'] = new_users
-        data['email_length'] = len(new_users)
+        new_users = [f"""{user.name} {user.email}""" for user in user_as_list]
+        data["new_users"] = new_users
+        data["email_length"] = len(new_users)
         return data
+
 
 # def email_generator(request: HttpRequest, amount: int = 100) -> HttpResponse:
 #     user_as_list = users_generator(amount)
