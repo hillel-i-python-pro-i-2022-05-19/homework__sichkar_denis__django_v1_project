@@ -33,5 +33,4 @@ USER ${USER}
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-VOLUME ${WORKDIR}/db
 EXPOSE 8000

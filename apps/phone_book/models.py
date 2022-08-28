@@ -19,6 +19,12 @@ class Tag(models.Model):
 
 
 class Contact(models.Model):
+    # user = models.ForeignKey(
+    #     settings.AUTH_USER_MODEL,
+    #     on_delete=models.CASCADE,
+    #     null=True,
+    #     blank=True,
+    # )
     contact_name = models.CharField(
         "Contact name", help_text="This is the name of the contact", null=False, blank=False, max_length=200
     )
@@ -43,12 +49,11 @@ class ContactTypeChoice(models.TextChoices):
 
 
 class ContactDetail(models.Model):
-    id_contact = models.ForeignKey(
-        Contact,
-        verbose_name="Contact",
+    user = models.ForeignKey(
+        "Contact",
         on_delete=models.CASCADE,
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
     )
     contact_detail_type = models.CharField(
         "Contact details name",
@@ -71,6 +76,6 @@ class ContactDetail(models.Model):
         return self.contact_detail_value
 
     def __str__(self) -> str:
-        return f"{self.id_contact.contact_name}: {self.contact_detail_type} - {self.contact_detail_value}"
+        return f"{self.user.contact_name}: {self.contact_detail_type} - {self.contact_detail_value}"
 
     __repr__ = __str__

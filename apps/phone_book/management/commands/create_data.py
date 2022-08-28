@@ -69,7 +69,7 @@ class Command(BaseCommand):
                     contact_detail_type = "LINKEDIN"
                     contact_detail_value = url_profile_linkedin
                 ContactDetail.objects.create(
-                    id_contact=new_contact,
+                    user=new_contact,
                     contact_detail_type=contact_detail_type,
                     contact_detail_value=contact_detail_value,
                 )

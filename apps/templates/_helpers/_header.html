@@ -20,7 +20,25 @@
                         <span class="wave-btn__waves"></span>
                     </a>
                 </li>
+                <li class="menu__item">
+                    <a href="{% url "sessions_example:index"  %}" class="menu__link wave-btn">
+                        <span class="wave-btn__text">Session Example</span>
+                        <span class="wave-btn__waves"></span>
+                    </a>
+                </li>
             </ul>
         </nav>
+            <div class="d-flex justify-content-center align-items-center">
+        {% if user.is_authenticated %}
+            <div>Hi {{ user.username }}!</div>
+            <div><a href="{% url 'logout' %}">Log Out</a></div>
+        {% else %}
+            <div>
+                <a href="{% url 'login' %}">Log In</a>
+                <span> or </span>
+                <a href="{% url 'users:signup' %}">Sign Up</a>
+            </div>
+        {% endif %}
+    </div>
     </div>
 </header>
