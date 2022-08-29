@@ -15,20 +15,22 @@
                     </a>
                 </li>
                 <li class="menu__item">
-                    <a href="{% url "contacts:show_contacts"  %}" class="menu__link wave-btn">
+                    <a href="{% url "contacts:show_contacts" %}" class="menu__link wave-btn">
                         <span class="wave-btn__text">Contacts</span>
                         <span class="wave-btn__waves"></span>
                     </a>
                 </li>
                 <li class="menu__item">
-                    <a href="{% url "sessions_example:index"  %}" class="menu__link wave-btn">
+                    <a href="{% url "sessions_example:index" %}" class="menu__link wave-btn">
                         <span class="wave-btn__text">Session Example</span>
                         <span class="wave-btn__waves"></span>
                     </a>
                 </li>
             </ul>
         </nav>
-            <div class="d-flex justify-content-center align-items-center">
+    </div>
+    <div class="get-started__header"
+         style="justify-content: space-around; align-items: center; padding: 50px 0; flex-direction: column">
         {% if user.is_authenticated %}
             <div>Hi {{ user.username }}!</div>
             <div><a href="{% url 'logout' %}">Log Out</a></div>
@@ -40,5 +42,5 @@
             </div>
         {% endif %}
     </div>
-    </div>
+
 </header>
