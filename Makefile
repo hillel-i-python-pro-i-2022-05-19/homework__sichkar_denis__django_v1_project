@@ -98,6 +98,5 @@ pre-commit-run-all:
 
 .PHONY: create-data
 # Shortcut
-
 create-data:
 	@python manage.py create_data 10
