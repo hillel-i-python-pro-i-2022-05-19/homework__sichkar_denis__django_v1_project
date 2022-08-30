@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 
 from . import views
@@ -11,8 +12,8 @@ urlpatterns = [
         "<int:pk>/",
         include(
             [
-                path("edit_contact", views.ContactEditView.as_view(), name="edit_contact"),
-                path("delete_contact", views.ContactDeleteView.as_view(), name="delete_contact"),
+                path("edit_contact", login_required(views.ContactEditView.as_view()), name="edit_contact"),
+                path("delete_contact", login_required(views.ContactDeleteView.as_view()), name="delete_contact"),
             ]
         ),
     ),

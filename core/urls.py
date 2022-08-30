@@ -22,5 +22,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("email-generator/", include("apps.email_generator.urls")),
     path("contacts/", include("apps.phone_book.urls")),
+    path("sessions-example/", include("apps.sessions_example.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("users/", include("apps.users.urls")),
     path("", include("apps.base.urls")),
 ]

@@ -10,6 +10,7 @@ class ContactDetailInlineAdmin(admin.TabularInline):
 
 @admin.register(Contact)
 class PhoneBookAdmin(admin.ModelAdmin):
+    # ...
     inlines = [ContactDetailInlineAdmin]
 
 

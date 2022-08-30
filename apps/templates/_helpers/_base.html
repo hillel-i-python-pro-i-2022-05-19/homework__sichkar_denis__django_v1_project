@@ -276,7 +276,7 @@
         }
 
         .header {
-            padding: 30px 0;
+            padding: 30px 0 0;
         }
 
         .menu__list {
@@ -469,14 +469,14 @@
 
 <body>
     <div class="wrapper">
-        {% include "_header.html" %}
+        {% include "_helpers/_header.html" %}
         <main class="main">
             <section class="get-started">
                 <div class="get-started__container">
                     <div class="get-started__body">
                         {% block body %}
                         {% endblock %}
-                        {% include "_messages.html" %}
+                        {% include "_helpers/_messages.html" %}
                     </div>
                 </div>
             </section>
