@@ -18,13 +18,12 @@ class Tag(models.Model):
     __repr__ = __str__
 
 
+# def get_icon_path(instance, filename: str) -> str:
+#     _, extension = filename.rsplit(".", maxsplit=1)
+#     return f"humans/avatars/{instance.pk}/{uuid.uuid4()}/avatar.{extension}"
+
+
 class Contact(models.Model):
-    # user = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL,
-    #     on_delete=models.CASCADE,
-    #     null=True,
-    #     blank=True,
-    # )
     contact_name = models.CharField(
         "Contact name", help_text="This is the name of the contact", null=False, blank=False, max_length=200
     )
@@ -34,6 +33,14 @@ class Contact(models.Model):
     tags = models.ManyToManyField(Tag, related_name="Contact_related_many_to_many_items", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+
+    # avatar = models.ImageField(
+    #     "Avatar",
+    #     upload_to=get_icon_path,
+    #     max_length=255,
+    #     blank=True,
+    #     null=True,
+    # )
 
     def __str__(self) -> str:
         return f"{self.contact_name}"
@@ -48,7 +55,7 @@ class ContactTypeChoice(models.TextChoices):
     LINKEDIN = "LINKEDIN", "Linkedin"
 
 
-class ContactDetail(models.Model):
+class ContactDetail(models.Model):  # Contact
     user = models.ForeignKey(
         "Contact",
         on_delete=models.CASCADE,

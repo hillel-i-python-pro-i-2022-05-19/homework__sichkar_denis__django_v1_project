@@ -1,12 +1,16 @@
 {% extends "_helpers/_base.html" %}
 {% block title %}Contacts{% endblock %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
 {% block body %}
     <div class="get-started__header">
         <h1 class="get-started__title"> Creat contact</h1>
     </div>
     <form method="POST" class="get-started__form">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form | crispy }}
+        {#        {% crispy form %}#}
         <button type="submit" class="get-started__btn btn-contact-create">Create</button>
     </form>
 {% endblock %}

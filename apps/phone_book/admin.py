@@ -14,11 +14,16 @@ class PhoneBookAdmin(admin.ModelAdmin):
     inlines = [ContactDetailInlineAdmin]
 
 
+# @admin.register(Contact)
+# class ContactAdmin(admin.ModelAdmin):
+#     ...
+
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     ...
 
 
-@admin.register(ContactDetail)
-class ContactDetailAdmin(admin.ModelAdmin):
-    ...
+# @admin.register(ContactDetail)
+# class ContactDetailAdmin(admin.ModelAdmin):
+#     ...

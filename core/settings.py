@@ -48,8 +48,11 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 LOCAL_APPS = ["apps.base", "apps.users", "apps.email_generator", "apps.phone_book", "apps.sessions_example"]
+
 THIRD_PARTY_APPS = [
     "phonenumber_field",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -136,6 +139,19 @@ USE_TZ = True
 
 # STATIC_URL = APPS_DIR.joinpath("static/")
 STATIC_URL = "static/"
+
+STATICFILES_MAIN_DIR = APPS_DIR.joinpath("static")
+
+STATICFILES_DIRS = [
+    STATICFILES_MAIN_DIR,
+]
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR.joinpath("media")
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

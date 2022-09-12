@@ -9,6 +9,9 @@
     <ol class="get-started__list list-get-started--border">
         {% for phone in object_list %}
             <li class="get-started__item ">
+                {% if phone.avatar %}
+                    <img class="human-avatar" src="{{ phone.avatar.url }}" alt="{{ phone.contact_name }}"/>
+                {% endif %}
                 <span>{{ phone.contact_name }}{{ phone.phone_number }}</span>
                 <div class="get-started__buttons">
                     <a href="{% url "contacts:edit_contact" pk=phone.pk %}"

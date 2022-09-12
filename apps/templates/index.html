@@ -1,7 +1,9 @@
 {% extends "_helpers/_base.html" %}
+{% load static %}
 
 {% block body %}
 
-        <h1 class="get-started__title title-center"> Welcome!</h1>
+    <h1 class="get-started__title title-center"> Welcome!</h1>
+    <img class="img" src="{% static 'images/img.png' %}" alt="image"/>
 
 {% endblock %}
