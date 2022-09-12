@@ -1,4 +1,5 @@
 import re
+import uuid
 
 from birthday import BirthdayField
 from django import forms
@@ -18,9 +19,9 @@ class Tag(models.Model):
     __repr__ = __str__
 
 
-# def get_icon_path(instance, filename: str) -> str:
-#     _, extension = filename.rsplit(".", maxsplit=1)
-#     return f"humans/avatars/{instance.pk}/{uuid.uuid4()}/avatar.{extension}"
+def get_icon_path(instance, filename: str) -> str:
+    _, extension = filename.rsplit(".", maxsplit=1)
+    return f"humans/avatars/{instance.pk}/{uuid.uuid4()}/avatar.{extension}"
 
 
 class Contact(models.Model):
@@ -34,13 +35,13 @@ class Contact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
-    # avatar = models.ImageField(
-    #     "Avatar",
-    #     upload_to=get_icon_path,
-    #     max_length=255,
-    #     blank=True,
-    #     null=True,
-    # )
+    avatar = models.ImageField(
+        "Avatar",
+        upload_to=get_icon_path,
+        max_length=255,
+        blank=True,
+        null=True,
+    )
 
     def __str__(self) -> str:
         return f"{self.contact_name}"

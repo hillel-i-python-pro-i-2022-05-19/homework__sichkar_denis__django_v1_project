@@ -29,18 +29,19 @@
             </ul>
         </nav>
     </div>
-    <div class="get-started__header"
-         style="justify-content: space-around; align-items: center; padding: 50px 0; flex-direction: column">
-        {% if user.is_authenticated %}
-            <div>Hi {{ user.username }}!</div>
-            <div><a href="{% url 'logout' %}">Log Out</a></div>
-        {% else %}
-            <div>
-                <a href="{% url 'login' %}">Log In</a>
-                <span> or </span>
-                <a href="{% url 'users:signup' %}">Sign Up</a>
-            </div>
-        {% endif %}
+    <div class="get-started__login login-get-started__container">
+        <div class="login-get-started__body">
+            {% if user.is_authenticated %}
+                <div>Hi {{ user.username }}!</div>
+                <div><a href="{% url 'logout' %}">Log Out</a></div>
+            {% else %}
+                <div>
+                    <a href="{% url 'login' %}">Log In</a>
+                    <span> or </span>
+                    <a href="{% url 'users:signup' %}">Sign Up</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 
 </header>

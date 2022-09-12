@@ -6,6 +6,6 @@ from apps.phone_book.models import Contact
 
 class ContactCreateView(CreateView):
     model = Contact
-    fields = ["contact_name", "contact_birthday", "tags"]
+    fields = ["contact_name", "contact_birthday", "tags", "avatar"]
     template_name = "phone_book/contact_form.html"
     success_url = reverse_lazy("contacts:show_contacts")

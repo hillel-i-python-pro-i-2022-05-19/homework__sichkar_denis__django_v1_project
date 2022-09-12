@@ -12,6 +12,7 @@ class ContactsForm(forms.ModelForm):
             "contact_name",
             "contact_birthday",
             "tags",
+            "avatar",
         ]
 
     contact_birthday = forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))

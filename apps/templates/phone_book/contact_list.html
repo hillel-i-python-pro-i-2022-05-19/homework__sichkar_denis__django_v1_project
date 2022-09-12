@@ -6,19 +6,37 @@
         <a href="{% url "contacts:create_contact" %}" class="get-started__btn btn-contact-create">Go to contact
             creation</a>
     </div>
-    <ol class="get-started__list list-get-started--border">
+    <ol class="get-started__list list-get-started__border">
         {% for phone in object_list %}
             <li class="get-started__item ">
-                {% if phone.avatar %}
-                    <img class="human-avatar" src="{{ phone.avatar.url }}" alt="{{ phone.contact_name }}"/>
-                {% endif %}
-                <span>{{ phone.contact_name }}{{ phone.phone_number }}</span>
+                <div class="login-get-started__img-login">
+                    <div class="list-get-started__avatar-wrapper">
+                        {% if phone.avatar %}
+                            <img class="list-get-started__avatar" src="{{ phone.avatar.url }}"
+                                 alt="{{ phone.contact_name }}"/>
+                        {% else %}
+                            <img class="list-get-started__avatar" src="../../static/images/user_icon.svg"
+                                 alt="{{ phone.contact_name }}"/>
+                        {% endif %}
+                    </div>
+                    <div class="list-get-started__info">
+                        <div>{{ phone.contact_name }} - {{ phone.contact_birthday }} </div>
+                        {% if phone.tags.all %}
+                            <div> Tags:
+                                {% for tag in  phone.tags.all %}
+                                    <span>#{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
                 <div class="get-started__buttons">
                     <a href="{% url "contacts:edit_contact" pk=phone.pk %}"
                        class="get-started__btn btn-contact-edit">Edit</a>
                     <a href="{% url "contacts:delete_contact" pk=phone.pk %}"
                        class="get-started__btn btn-contact-delete">Delete</a>
                 </div>
+
             </li>
         {% endfor %}
     </ol>
