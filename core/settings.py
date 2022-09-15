@@ -53,7 +53,6 @@ LOCAL_APPS = [
     "apps.email_generator",
     "apps.phone_book",
     "apps.sessions_example",
-    "apps.middleware_logger",
 ]
 
 THIRD_PARTY_APPS = [
@@ -72,8 +71,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "apps.middleware_logger.middleware.SimpleLoggingMiddleware",
-    "apps.middleware_logger.middleware.SimpleLoggingMiddleware2",
 ]
 
 ROOT_URLCONF = "core.urls"
