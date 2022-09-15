@@ -47,7 +47,14 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
-LOCAL_APPS = ["apps.base", "apps.users", "apps.email_generator", "apps.phone_book", "apps.sessions_example"]
+LOCAL_APPS = [
+    "apps.base",
+    "apps.users",
+    "apps.email_generator",
+    "apps.phone_book",
+    "apps.sessions_example",
+    "apps.middleware_logger",
+]
 
 THIRD_PARTY_APPS = [
     "phonenumber_field",
@@ -65,6 +72,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "apps.middleware_logger.middleware.SimpleLoggingMiddleware",
+    "apps.middleware_logger.middleware.SimpleLoggingMiddleware2",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -151,7 +160,6 @@ MEDIA_ROOT = BASE_DIR.joinpath("media")
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
