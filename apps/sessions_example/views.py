@@ -1,6 +1,7 @@
 import datetime
 from typing import Any, ClassVar
 
+from django.utils import timezone
 from django.views.generic import TemplateView
 
 from .models import SessionAll
@@ -18,7 +19,7 @@ class SessionExample(TemplateView):
         kwargs[self.KEY_TO_COUNT_OF_VISITS] = count_of_visits
         kwargs["session_id"] = session.session_key
         if count_of_visits > 1:
-            last_visit = datetime.datetime.now()
+            last_visit = datetime.datetime.now(tz=timezone.utc)
             if SessionAll.objects.filter(session_key=session.session_key).exists():
                 SessionAll.objects.filter(session_key=session.session_key).update(
                     count_of_visits=count_of_visits, last_visit=last_visit
