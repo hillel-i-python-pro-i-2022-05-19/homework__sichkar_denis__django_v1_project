@@ -33,4 +33,6 @@ USER ${USER}
 
 ENTRYPOINT ["/entrypoint.sh"]
 
+VOLUME ${WORKDIR}/media
+
 EXPOSE 8000

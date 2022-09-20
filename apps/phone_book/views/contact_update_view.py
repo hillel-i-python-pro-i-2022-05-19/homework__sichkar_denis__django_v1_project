@@ -6,5 +6,5 @@ from apps.phone_book.models import Contact
 
 class ContactEditView(UpdateView):
     model = Contact
-    fields = ["contact_name", "contact_birthday", "tags"]
+    fields = ["contact_name", "contact_birthday", "tags", "avatar"]
     success_url = reverse_lazy("contacts:show_contacts")

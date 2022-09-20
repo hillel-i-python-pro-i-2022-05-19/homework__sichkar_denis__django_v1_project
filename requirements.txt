@@ -36,3 +36,10 @@ black==22.6.0
 # Static analysis
 prospector[with_everything]==1.7.7
 # [code_style]-[END]
+
+# Images
+pillow==9.2.0
+
+# Forms
+django-crispy-forms==1.14.0
+crispy-bootstrap5==0.6.0

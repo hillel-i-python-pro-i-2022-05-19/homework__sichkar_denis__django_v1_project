@@ -7,7 +7,7 @@ app_name = "contacts"
 
 urlpatterns = [
     path("", views.ContactListView.as_view(), name="show_contacts"),
-    path("create_contact", views.create_contact, name="create_contact"),
+    path("create_contact", views.ContactCreateView.as_view(), name="create_contact"),
     path(
         "<int:pk>/",
         include(
